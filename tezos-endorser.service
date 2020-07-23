@@ -1,0 +1,19 @@
+# The Tezos Endorser service (part of systemd)
+# file: /etc/systemd/system/tezos-endorser.service 
+
+[Unit]
+Description     = Tezos Endorser Service
+Wants           = network-online.target 
+BindsTo		= tezos-node.service
+After           = tezos-node.service
+
+[Service]
+User            = newby
+Group		= newby
+WorkingDirectory= /home/newby/tezos-latest-release/
+ExecStartPre	= /bin/sleep 1
+ExecStart       = /home/newby/tezos-latest-release/tezos-endorser-006-PsCARTHA run remote_ledgerless
+Restart         = on-failure
+
+[Install]
+WantedBy	= multi-user.target

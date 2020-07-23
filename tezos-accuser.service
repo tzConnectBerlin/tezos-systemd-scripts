@@ -1,0 +1,19 @@
+# The Tezos Accuser service (part of systemd)
+# file: /etc/systemd/system/tezos-accuser.service 
+
+[Unit]
+Description     = Tezos Accuser Service
+Wants           = network-online.target 
+BindsTo		= tezos-node.service
+After           = tezos-node.service
+
+[Service]
+User            = newby
+Group		= newby
+WorkingDirectory= /home/newby/tezos-latest/
+ExecStartPre	= /bin/sleep 1
+ExecStart       = /home/newby/tezos-latest/tezos-accuser-006-PsCARTHA run remote_ledgerless
+Restart         = on-failure
+
+[Install]
+WantedBy	= multi-user.target
