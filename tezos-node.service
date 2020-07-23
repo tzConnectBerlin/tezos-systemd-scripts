@@ -15,4 +15,4 @@ Restart         = on-failure
 
 [Install]
 WantedBy	= multi-user.target
-RequiredBy	= tezos-newby.service tezos-endorser.service tezos-accuser.service
+RequiredBy	= tezos-baker.service tezos-endorser.service tezos-accuser.service
